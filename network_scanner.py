@@ -7,6 +7,8 @@ def get_arguments():
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-t", "--target", dest="target", help="Target IP address/range")
 	options = parser.parse_args()
+	if not options.target:
+		parser.error("[-] Please specify target IP/range, use -h or --help for more info.")
 	return options
 
 def scan(ip):
