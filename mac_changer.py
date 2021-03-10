@@ -14,7 +14,10 @@ def get_argument():
     elif not options.new_mac_address:
         parser.error("[-] Please specify a new MAC address you want, use -h or --help for more info.")
 
-    return options
+    if re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", options.new_mac_address):
+        return options
+    else:
+        parser.error("[-] Not a valid MAC address! Try again with a valid MAC address")
 
 def change_mac(interface, new_mac_address):
     print("[+] Changing MAC address for "+interface+" to "+new_mac_address)
