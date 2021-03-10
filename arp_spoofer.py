@@ -2,6 +2,7 @@
 
 import scapy.all as scapy
 import argparse
+import time
 
 def get_argument():
 	parser = argparse.ArgumentParser()
