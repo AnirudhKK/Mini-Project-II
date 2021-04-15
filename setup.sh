@@ -1,8 +1,9 @@
 sudo apt-get install -y python3
 sudo apt install -y python3-pip
 
-pip3 install  scapy
-pip3 install  scapy_http
+pip3 install scapy
+pip3 install scapy_http
+pip3 install requests
 
 sudo chmod +x mac_changer.py
 sudo chmod +x network_scanner.py
