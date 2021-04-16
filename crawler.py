@@ -32,19 +32,25 @@ def request(url, s):
 def extract_links(response):
     href_links = re.findall('(?:href=")(.*?)"', response)
     return href_links
+try:
+    with open(options.wordlist,"r") as wordlist_file:
+        for line in wordlist_file:
+            test_url = options.target
+            word = line.strip()
+            test_url = word+"." + options.target
+            response = request(test_url, options.s)
+            if response:
+                print("\n\n\n\n------------------------LINKS FOR "+ test_url +"--------------------------")
+                links_result = extract_links(str(response.content))
+                unique_links = []
+                for link in links_result:
+                    link = urljoin(test_url, link)
 
-with open(options.wordlist,"r") as wordlist_file:
-    for line in wordlist_file:
-        test_url = options.target
-        word = line.strip()
-        test_url = word+"." + options.target
-        response = request(test_url, options.s)
-        if response:
-            print("\n\n\n\n------------------------LINKS FOR "+ test_url +"--------------------------")
-            links_result = extract_links(str(response.content))
-            unique_links = []
-            for link in links_result:
-                link = urljoin(test_url, link)
-                if link not in unique_links and '#' not in link:
-                    print(link+"\n")
-                    unique_links.append(link)
+                    if '#' in link:
+                        link = link.split('#')[0]
+
+                    if link not in unique_links and options.target in link:
+                        print(link+"\n")
+                        unique_links.append(link)
+except KeyboardInterrupt:
+	print("\n[+] Stopping the Crawler")
