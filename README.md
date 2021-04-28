@@ -1,8 +1,9 @@
-# Mini-Project-II
-Mini Project - II for 6th Sem B. Tech CSE - GLA University, Mathura
+# Mini Project - II
+## _Cyber Security Tools by Anirudh Kumar Kushwaha_
 
-Steps to run :-
-1. Clone the project to your computer
-2. cd Mini-Project-II
-3. sudo chmod +x setup.sh
-4. ./setup.sh
+# Steps to run :-
+- Clone the project to your computer
+- ```cd Mini-Project-II```
+- ``` sudo chmod +x setup.sh ```
+- ``` ./setup.sh ```
+<img align="center" width="1000px" alt="GIF" src="https://media.giphy.com/media/RDZo7znAdn2u7sAcWH/giphy.gif" />
