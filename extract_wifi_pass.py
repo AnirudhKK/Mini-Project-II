@@ -1,6 +1,21 @@
-#!/usr/bin/env python3
-
+from platform import system
 import subprocess, re
+
+def get_os():
+    return system()
+
+def get_linux_wifi():
+    files = subprocess.check_output("cd /etc/NetworkManager/system-connections/ && ls -a", shell=True)
+    files = str(files, 'utf-8').split("\n")
+    files = files[2:-1]
+    for file in files:
+	    file_details = subprocess.check_output("cd /etc/NetworkManager/system-connections/ && cat \""+file+"\"",  shell=True)
+	    file_details = str(file_details, 'utf-8')
+	    if 'type=wifi' in file_details:	
+		    ssid = re.search("(?:ssid=)(.*)", file_details)[1]
+		    ssid_password = re.search("(?:psk=)(.*)", file_details)[1]
+		    if ssid:
+			    print("-----------------------\nName = "+ssid+"\nPassword = "+ssid_password)
 
 def extract_network_names():
     get_networks_command = "netsh wlan show profile"
@@ -27,6 +42,11 @@ print("""
        \/           \/                                  \/        \/        \/ 
 
 """)
-network_names = extract_network_names()
-for name in network_names:
-    print("----------------------------------------------------\nWifi Name = " + name +"\nPassword = "+ extract_password_network(str(name)))
+
+os = get_os()
+if(os == 'Windows'):
+    network_names = extract_network_names()
+    for name in network_names:
+        print("----------------------------------------------------\nWifi Name = " + name +"\nPassword = "+ extract_password_network(str(name)))
+elif(os == 'Linux'):
+    get_linux_wifi()
