@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import subprocess, re
 
 def extract_network_names():
