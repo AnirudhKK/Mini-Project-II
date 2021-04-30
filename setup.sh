@@ -18,3 +18,10 @@ sudo cp arp_spoofer.py /bin/arp_spoofer
 sudo cp crawler.py /bin/crawler
 sudo cp spider.py /bin/spider
 sudo cp extract_wifi_pass.py /bin/extract_wifi_pass
+
+printf "Tools have been installed successfully. They can be accessed by following commands :- "
+printf "1. MAC Changer              -  mac_changer [arguments]"
+printf "2. Network Scanner          -  network_scanner [arguments]"
+printf "3. Crawler                  -  crawler [arguments]"
+printf "4. Spider                   -  spider [arguments]"
+printf "5. Wifi-Pass Extractor      -  extract_wifi_pass"
